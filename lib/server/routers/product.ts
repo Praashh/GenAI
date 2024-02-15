@@ -1,4 +1,4 @@
-import { getProductById, getProduct } from "@/lib/api/product/queries";
+import { getProductById, getProducts } from "@/lib/api/product/queries";
 import { publicProcedure, router } from "@/lib/server/trpc";
 import {
   productIdSchema,
@@ -9,7 +9,7 @@ import { createProduct, deleteProduct, updateProduct } from "@/lib/api/product/m
 
 export const productRouter = router({
   getProduct: publicProcedure.query(async () => {
-    return getProduct();
+    return getProducts();
   }),
   getProductById: publicProcedure.input(productIdSchema).query(async ({ input }) => {
     return getProductById(input.id);
