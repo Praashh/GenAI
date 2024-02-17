@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import NextAuthProvider from "@/lib/auth/Provider";
 import TrpcProvider from "@/lib/trpc/Provider";
 import { cookies } from "next/headers";
+import { ThemeProvider } from "./_provider";
 export default async function AppLayout({
   children,
 }: {
@@ -13,6 +14,7 @@ export default async function AppLayout({
   await checkAuth();
   return (
     <main>
+      <ThemeProvider>
       <NextAuthProvider>
         <TrpcProvider cookies={cookies().toString()}>
           <div className="flex h-screen">
@@ -26,6 +28,7 @@ export default async function AppLayout({
       </NextAuthProvider>
 
       <Toaster richColors />
+    </ThemeProvider>
     </main>
   );
 }
