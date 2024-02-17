@@ -59,19 +59,19 @@ const ProductForm = ({
   const { mutate: createProduct, isLoading: isCreating } =
     trpc.product.createProduct.useMutation({
       onSuccess: (res) => onSuccess("create"),
-      onError: (err) => onError("create", { error: err.message }),
+      onError: (err) => console.log("create", { error: err.message }),
     });
 
   const { mutate: updateProduct, isLoading: isUpdating } =
     trpc.product.updateProduct.useMutation({
       onSuccess: (res) => onSuccess("update"),
-      onError: (err) => onError("update", { error: err.message }),
+      onError: (err) => console.log("update", { error: err.message }),
     });
 
   const { mutate: deleteProduct, isLoading: isDeleting } =
     trpc.product.deleteProduct.useMutation({
       onSuccess: (res) => onSuccess("delete"),
-      onError: (err) => onError("delete", { error: err.message }),
+      onError: (err) => console.log("delete", { error: err.message }),
     });
 
   const handleSubmit = (values: NewProductParams) => {
