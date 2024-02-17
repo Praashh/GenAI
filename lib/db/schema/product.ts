@@ -1,7 +1,7 @@
 import { productSchema } from "@/zodAutoGenSchemas";
 import { z } from "zod";
 import { timestamps } from "@/lib/utils";
-import { getProduct } from "@/lib/api/product/queries";
+import { getProducts } from "@/lib/api/product/queries";
 
 
 // Schema for product - used to validate API requests
@@ -27,5 +27,5 @@ export type UpdateProductParams = z.infer<typeof updateProductParams>;
 export type ProductId = z.infer<typeof productIdSchema>["id"];
     
 // this type infers the return from getProduct() - meaning it will include any joins
-export type CompleteProduct = Awaited<ReturnType<typeof getProduct>>["product"][number];
+export type CompleteProduct = Awaited<ReturnType<typeof getProducts>>["product"][number];
 
