@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/ThemeToggle";
 import { getUserAuth } from "@/lib/auth/utils";
 import { signOut } from "next-auth/react";
+import { Logout } from "@/components/layout/logout-button";
 
 export default async function LandingPage() {
   const { session } = await getUserAuth();
@@ -49,6 +50,7 @@ export default async function LandingPage() {
               </Button>
             </Link>
           ) : (
+            <div className="flex items-center gap-6">
             <Link
               className="text-sm font-medium hover:underline underline-offset-4"
               href="/dashboard"
@@ -57,8 +59,10 @@ export default async function LandingPage() {
                 Dashboard 
               </Button>
             </Link>
+
+            <Logout/>
+            </div>
           )}
-          {/* {session && <Button onClick={() => signOut({callbackUrl: "/"} )}>Sign Out</Button>} */}
           <ModeToggle />
         </nav>
         <div className="block md:hidden lg:hidden  md:ml-0 lg:ml-0 sm:ml-20">

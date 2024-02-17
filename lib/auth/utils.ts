@@ -25,6 +25,20 @@ export type AuthSession = {
   } | null;
 };
 
+export function getAuthProviders() {
+  return [
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    }),
+    GithubProvider({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+    }),
+    // ... other providers
+  ];
+}
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db) as Adapter,
   callbacks: {
@@ -33,16 +47,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  providers: [
-     GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
-    }),
-    GithubProvider({
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
-    })
-  ],
+  providers: getAuthProviders(),
 };
 
 
