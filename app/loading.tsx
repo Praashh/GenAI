@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="grid place-items-center animate-pulse text-neutral-300 p-4">
+    <div className="grid place-items-center justify-center h-[100vh] animate-pulse text-neutral-300 p-4">
       <div role="status">
         <svg
           aria-hidden="true"
