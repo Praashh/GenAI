@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/ThemeToggle";
 import { getUserAuth } from "@/lib/auth/utils";
-import { signOut } from "next-auth/react";
+import { Logout } from "@/components/layout/logout-button";
 
 export default async function LandingPage() {
   const { session } = await getUserAuth();
@@ -49,18 +49,20 @@ export default async function LandingPage() {
               </Button>
             </Link>
           ) : (
-            <Link
-              className="text-sm font-medium hover:underline underline-offset-4"
-              href="/dashboard"
-            >
-              <Button>
-                Dashboard 
-              </Button>
-            </Link>
+            <div className="flex items-center gap-6">
+              <Link
+                className="text-sm font-medium hover:underline underline-offset-4"
+                href="/dashboard"
+              >
+                <Button>Dashboard</Button>
+              </Link>
+
+              <Logout />
+            </div>
           )}
-          {/* {session && <Button onClick={() => signOut({callbackUrl: "/"} )}>Sign Out</Button>} */}
           <ModeToggle />
         </nav>
+        {/* resp navbar */}
         <div className="block md:hidden lg:hidden  md:ml-0 lg:ml-0 sm:ml-20">
           <Link
             className="text-sm font-medium hover:underline underline-offset-4"
@@ -203,7 +205,21 @@ export default async function LandingPage() {
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-neutral-500 dark:text-neutral-400">
-          © 2024 Acme Inc. All rights reserved.
+          © 2024{" "}
+          <Link
+            href={"https://twitter.com/PrashantSony6"}
+            className="font-semibold text-md duration-200 dark:hover:text-white hover:text-black"
+          >
+            Praash
+          </Link>{" "}
+          {"and  "}{" "}
+          <Link
+            href={"https://twitter.com/Mefhd2"}
+            className="font-semibold text-md duration-200 dark:hover:text-white hover:text-black"
+          >
+            FHD
+          </Link>
+          . All rights reserved.
         </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link className="text-xs hover:underline underline-offset-4" href="#">
@@ -217,4 +233,3 @@ export default async function LandingPage() {
     </div>
   );
 }
-
